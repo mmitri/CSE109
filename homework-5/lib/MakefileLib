@@ -1,0 +1,24 @@
+static:
+	g++ -c lib.o lib.cpp
+	g++ -static -o liblinkedlist.a lib.cpp
+	ar rs lib.a lib.o
+	mkdir -p lib/build/lib/release
+	mkdir -p lib/build/objects
+	mv *.a lib/build/lib/release
+	mv *.o lib/build/objects
+shared:
+	g++ -c -o lib.o lib.cpp
+	g++ -shared -o liblinkedlist.so lib.o
+	ar rs lib.a lib.o
+	mkdir -p lib/build/lib/release
+	mkdir -p lib/build/objects
+	mv *.so lib/build/lib/release
+	mv *.o lib/build/objects
+debug:
+	g++ -g -o lib.o lib.cpp
+	mkdir -p lib/build/lib/debug
+	mkdir -p lib/build/objects
+	mv *.g lib/build/lib/debug
+	mv *.o lib/build/objects
+clean:
+	rm -rf build
